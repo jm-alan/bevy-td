@@ -58,3 +58,11 @@ impl Effect {
     }
   }
 }
+
+#[derive(Debug, Default, Clone, Copy, Reflect)]
+pub struct EffectResistance {
+  pub burn: f32,
+  pub freeze: f32,
+  pub shock: f32,
+  pub corrode: f32,
+}
