@@ -9,18 +9,19 @@ impl Mortal for Mob {
   where
     D: Damaging,
   {
-    let damage = self.apply_resistances(source.damage());
-    self.current_health -= damage.standard;
-    self.current_health -= damage.fire;
-    self.current_health -= damage.ice;
-    self.current_health -= damage.lightning;
-    self.current_health -= damage.acid;
-    self.current_health -= damage.explosive;
+    self.current_health -= self.process_damage(source.damage());
     self.current_effect = source.effect().current();
   }
 
-  fn apply_resistances(&self, damage: &Damage) -> Damage {
-    todo!()
+  fn process_damage(&self, damage: &Damage) -> f32 {
+    let mut total_damage: f32 = 0.0;
+    total_damage += damage.standard - self.damage_resistance.standard;
+    total_damage += damage.fire - self.damage_resistance.fire;
+    total_damage += damage.ice - self.damage_resistance.ice;
+    total_damage += damage.lightning - self.damage_resistance.lightning;
+    total_damage += damage.acid - self.damage_resistance.acid;
+    total_damage += damage.explosive - self.damage_resistance.explosive;
+    total_damage
   }
 
   fn heal(&mut self) {}
