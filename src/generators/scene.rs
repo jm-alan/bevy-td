@@ -17,7 +17,7 @@ impl Scene {
     }
   }
 
-  pub fn shape_generator<C, M>(
+  pub fn generate_shape<C, M>(
     mesh_basis: M,
     component: C,
     name: String,
