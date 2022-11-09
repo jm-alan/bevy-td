@@ -15,3 +15,4 @@ opt-level = 3
 bevy = { version = "0.8.1" }
 bevy-inspector-egui = { version = "0.12.1" }
 rand = { version = "0.8.5", features = ["std_rng"] }
+uuid = { version = "1.2.1", features = ["v4", "fast-rng"] }
