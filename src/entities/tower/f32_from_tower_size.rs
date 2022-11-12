@@ -3,6 +3,7 @@ use super::TowerSize;
 use super::TowerSize::*;
 
 impl From<TowerSize> for f32 {
+  #[inline(always)]
   fn from(size: TowerSize) -> Self {
     match size {
       ExtraSmall => 0.25,
