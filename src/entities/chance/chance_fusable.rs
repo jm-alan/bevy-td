@@ -14,9 +14,7 @@ where
 {
   fn fuse(self, other: Self) -> Self {
     Self {
-      wrapped: self
-        .wrapped
-        .fuse(other.wrapped),
+      wrapped: self.wrapped.fuse(other.wrapped),
       probability: f32::max(self.probability, other.probability),
     }
   }

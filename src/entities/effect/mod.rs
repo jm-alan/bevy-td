@@ -55,22 +55,10 @@ pub struct Effect {
 impl Effect {
   pub fn current(&self) -> CurrentEffect {
     CurrentEffect {
-      burn: self
-        .burn
-        .maybe()
-        .running(),
-      freeze: self
-        .freeze
-        .maybe()
-        .running(),
-      shock: self
-        .shock
-        .maybe()
-        .running(),
-      corrode: self
-        .corrode
-        .maybe()
-        .running(),
+      burn: self.burn.maybe().running(),
+      freeze: self.freeze.maybe().running(),
+      shock: self.shock.maybe().running(),
+      corrode: self.corrode.maybe().running(),
     }
   }
 }

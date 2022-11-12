@@ -5,27 +5,19 @@ impl From<TowerKind> for Effect {
   fn from(kind: TowerKind) -> Self {
     match kind {
       TowerKind::Fire(components) => Self {
-        burn: components
-          .effect_stats
-          .into(),
+        burn: components.effect_stats.into(),
         ..Default::default()
       },
       TowerKind::Ice(components) => Self {
-        freeze: components
-          .effect_stats
-          .into(),
+        freeze: components.effect_stats.into(),
         ..Default::default()
       },
       TowerKind::Lightning(components) => Self {
-        shock: components
-          .effect_stats
-          .into(),
+        shock: components.effect_stats.into(),
         ..Default::default()
       },
       TowerKind::Acid(components) => Self {
-        corrode: components
-          .effect_stats
-          .into(),
+        corrode: components.effect_stats.into(),
         ..Default::default()
       },
       TowerKind::Hybrid(kinds) => {

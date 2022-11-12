@@ -5,39 +5,27 @@ impl From<TowerKind> for Damage {
   fn from(kind: TowerKind) -> Self {
     match kind {
       TowerKind::Standard(components) => Self {
-        standard: components
-          .combat_stats
-          .damage,
+        standard: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Fire(components) => Self {
-        fire: components
-          .combat_stats
-          .damage,
+        fire: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Ice(components) => Self {
-        ice: components
-          .combat_stats
-          .damage,
+        ice: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Lightning(components) => Self {
-        lightning: components
-          .combat_stats
-          .damage,
+        lightning: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Acid(components) => Self {
-        acid: components
-          .combat_stats
-          .damage,
+        acid: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Explosive(components) => Self {
-        explosive: components
-          .combat_stats
-          .damage,
+        explosive: components.combat_stats.damage,
         ..Default::default()
       },
       TowerKind::Hybrid(kinds) => {

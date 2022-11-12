@@ -28,45 +28,38 @@ impl RecursiveFusable for Vec<TowerKind> {
       };
     }
     let mut combined: Vec<TowerKind> = vec![];
-    if let Option::Some(fused) = standard
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      standard.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = fire
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      fire.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = ice
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      ice.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = lightning
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      lightning.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = acid
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      acid.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = explosive
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      explosive.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };
-    if let Option::Some(fused) = hybrid
-      .into_iter()
-      .reduce(move |acc, next| acc.fuse(next))
+    if let Option::Some(fused) =
+      hybrid.into_iter().reduce(move |acc, next| acc.fuse(next))
     {
       combined.push(fused);
     };

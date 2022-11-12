@@ -58,9 +58,7 @@ impl Tower {
   ) -> impl Fn(Commands, ResMut<Assets<Mesh>>, ResMut<Assets<StandardMaterial>>)
   {
     let tower: Tower = kind.into();
-    let name: String = tower
-      .name
-      .clone();
+    let name: String = tower.name.clone();
     Scene::generate_shape(
       shape::Cube { size: size.into() },
       tower,
