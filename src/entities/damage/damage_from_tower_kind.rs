@@ -41,9 +41,9 @@ impl From<TowerKind> for Damage {
         ..Default::default()
       },
       TowerKind::Hybrid(kinds) => {
-        let damage = Damage::default();
+        let mut damage = Self::default();
         for kind in kinds.into_iter() {
-          damage.fuse(kind.into());
+          damage = damage.fuse(kind.into());
         }
         damage
       }
