@@ -1,3 +1,7 @@
+pub mod chance_effect_component_from_effect_component;
+pub mod chance_effect_component_from_f32;
+pub mod chance_fusable;
+
 use bevy::prelude::*;
 use rand::{thread_rng, Rng};
 
@@ -7,7 +11,6 @@ use crate::traits::possible::Possible;
 pub struct Chance<T>
 where
   T: Clone,
-  T: Copy,
   T: Default,
   T: Possible,
   T: Reflect,
@@ -19,7 +22,6 @@ where
 impl<T> Chance<T>
 where
   T: Clone,
-  T: Copy,
   T: Default,
   T: Possible,
   T: Reflect,
