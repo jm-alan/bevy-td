@@ -1,4 +1,7 @@
-pub trait Fusable: Clone {
-  fn fuse(&self, other: &Self) -> Self;
-  fn absorb(&mut self, other: &Self);
+pub trait Fusable {
+  fn fuse(self, other: Self) -> Self;
+}
+
+pub trait RecursiveFusable: Fusable + Sized {
+  fn recursive_fuse(self) -> Self;
 }
