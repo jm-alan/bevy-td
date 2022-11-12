@@ -13,9 +13,10 @@ where
   T: Fusable,
 {
   fn fuse(self, other: Self) -> Self {
-    let wrapped = self.wrapped.clone().fuse(other.wrapped);
     Self {
-      wrapped,
+      wrapped: self
+        .wrapped
+        .fuse(other.wrapped),
       probability: f32::max(self.probability, other.probability),
     }
   }
