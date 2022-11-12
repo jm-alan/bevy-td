@@ -1,4 +1,7 @@
+pub mod effect_components_from_f32;
+pub mod effect_components_fusable;
 pub mod effect_components_possible;
+pub mod effect_fusable;
 
 use bevy::prelude::*;
 
@@ -6,9 +9,9 @@ use super::chance::Chance;
 
 #[derive(Debug, Default, Clone, Copy, Reflect)]
 pub struct EffectComponents {
-  pub probability: f32,
-  pub duration: f32,
   pub damage: f32,
+  pub duration: f32,
+  pub probability: f32,
 }
 
 impl EffectComponents {
