@@ -1,6 +1,7 @@
 pub mod effect_components_from_f32;
 pub mod effect_components_fusable;
 pub mod effect_components_possible;
+pub mod effect_from_tower_kind;
 pub mod effect_fusable;
 
 use bevy::prelude::*;
