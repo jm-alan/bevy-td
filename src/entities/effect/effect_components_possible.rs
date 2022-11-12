@@ -3,7 +3,7 @@ use crate::traits::possible::Possible;
 
 impl Possible for EffectComponents {
   fn success(&self) -> Self {
-    *self
+    self.clone()
   }
 
   fn failure(&self) -> Self {
