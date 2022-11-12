@@ -1,3 +1,6 @@
+mod damage_from_tower_kind;
+mod damage_fusable;
+
 use bevy::prelude::*;
 
 #[derive(Debug, Default, Clone, Copy, Reflect)]
