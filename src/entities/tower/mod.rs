@@ -1,14 +1,24 @@
-mod f32_from_tower_size;
-mod tower_damaging;
-mod tower_from_tower_kind;
-mod tower_mortal;
-mod tower_trigger_projectiles;
+pub mod f32_from_tower_size;
+pub mod tower_base_stats_from_f32;
+pub mod tower_base_stats_fusable;
+pub mod tower_combat_stats_from_f32;
+pub mod tower_combat_stats_fusable;
+pub mod tower_components_from_f32;
+pub mod tower_components_from_tower_kind;
+pub mod tower_components_fusable;
+pub mod tower_damaging;
+pub mod tower_from_tower_kind;
+pub mod tower_kind_default;
+pub mod tower_kind_fusable;
+pub mod tower_mortal;
+pub mod tower_trigger_projectiles;
+pub mod vec_tower_kind_recursive_fusable;
 
 use bevy::prelude::*;
 
 use super::{
   damage::Damage,
-  effect::{CurrentEffect, Effect},
+  effect::{CurrentEffect, Effect, EffectComponents},
   projectile::Projectile,
 };
 use crate::{generators::scene::Scene, traits::damaging::Damaging};
@@ -48,43 +58,41 @@ impl Tower {
   ) -> impl Fn(Commands, ResMut<Assets<Mesh>>, ResMut<Assets<StandardMaterial>>)
   {
     let tower: Tower = kind.into();
-    let name: String = tower.name.clone();
+    let name: String = tower
+      .name
+      .clone();
     Scene::generate_shape(
       shape::Cube { size: size.into() },
       tower,
       name,
       transform,
-      color.into(),
+      color,
     )
   }
 }
 
-#[derive(Debug, Default, Copy, Clone)]
+#[derive(Debug, Default, Clone)]
+pub struct TowerBaseStats {
+  pub max_health: f32,
+  pub healing_amount: f32,
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct TowerCombatStats {
+  pub damage: f32,
+  pub range: f32,
+  pub fire_rate: f32,
+  pub projectile_speed: f32,
+}
+
+#[derive(Debug, Default, Clone)]
 pub struct TowerComponents {
-  max_health: f32,
-  healing_amount: f32,
-  base_damage: f32,
-  effect_damage: f32,
-  range: f32,
-  fire_rate: f32,
-  projectile_speed: f32,
+  pub base_stats: TowerBaseStats,
+  pub combat_stats: TowerCombatStats,
+  pub effect_stats: EffectComponents,
 }
 
-impl From<[f32; 7]> for TowerComponents {
-  fn from(parts: [f32; 7]) -> Self {
-    Self {
-      max_health: parts[0],
-      healing_amount: parts[1],
-      base_damage: parts[2],
-      effect_damage: parts[3],
-      range: parts[4],
-      fire_rate: parts[5],
-      projectile_speed: parts[6],
-    }
-  }
-}
-
-#[derive(Debug, Clone, Reflect)]
+#[derive(Debug, Reflect, Clone)]
 pub enum TowerKind {
   Standard(TowerComponents),
   Fire(TowerComponents),
@@ -104,10 +112,4 @@ pub enum TowerSize {
   Large,
   ExtraLarge,
   Custom(f32),
-}
-
-impl Default for TowerKind {
-  fn default() -> Self {
-    TowerKind::Standard([0.0; 7].into())
-  }
 }
