@@ -8,7 +8,7 @@ use bevy_inspector_egui::WorldInspectorPlugin;
 use entities::{
   mob::Mob,
   projectile::Projectile,
-  tower::{Tower, TowerKind, TowerSize},
+  tower::{Tower, TowerComponents, TowerKind, TowerSize},
 };
 use generators::{camera::spawn_camera, light::spawn_light, scene::Scene};
 
@@ -32,9 +32,11 @@ fn main() {
     .register_type::<Mob>()
     .add_startup_system(Scene::plane_generator(Color::rgb(0.5, 0.1, 0.1), 5.0))
     .add_startup_system(Tower::generate(
-      TowerKind::Standard(
-        [100.0, 0.0, 1.0, 0.0, 10.0, 1.0, 1.0].into()
-      ),
+      TowerKind::Standard(TowerComponents {
+        base_stats: [100.0, 0.0].into(),
+        combat_stats: [1.0, 10.0, 1.0, 1.0].into(),
+        ..Default::default()
+      }),
       TowerSize::Medium,
       Transform::from_xyz(0.0, 0.5, 0.0),
       Color::rgb(0.9, 0.3, 0.3),
